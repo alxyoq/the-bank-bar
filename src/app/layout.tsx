@@ -34,8 +34,8 @@ export default function RootLayout({
           property="og:image"
           content="/images/logo/link-preview.png"
         />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="1200" />
+        <meta property="og:image:width" content="1000" />
+        <meta property="og:image:height" content="1000" />
         <meta property="og:image:alt" content="Woodbury Station Cafe Logo" />
 
         {/* Twitter Card Meta Tags */}
