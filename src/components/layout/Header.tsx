@@ -1,12 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Instagram, Facebook, Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,13 +18,30 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (
+        menuOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(target)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [menuOpen]);
+
   return (
     <header
       className={`sticky top-0 z-50 bg-white border-b border-gray-200 transition-all duration-300 ease-in-out ${
         scrolled ? 'shadow-lg py-2 h-[56px]' : 'py-4 h-[80px]'
       }`}
     >
-      <div className="max-w-screen-xl mx-auto px-4 flex items-center justify-between h-full">
+      <div className="max-w-screen-xl mx-auto px-2 sm:px-4 flex items-center justify-between h-full">
         {/* Brand text box */}
         <Link href="/" className="leading-tight">
           <div className="px-4 py-1 rounded-md bg-white/60 backdrop-blur-md border border-gray-300 text-center transition-all">
@@ -64,17 +83,21 @@ const Header = () => {
 
         {/* Mobile Hamburger */}
         <button
+          ref={buttonRef}
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-cafe-rose"
+          className="md:hidden text-cafe-rose p-2 rounded focus:outline-none focus:ring-2 focus:ring-cafe-rose"
           aria-label="Toggle menu"
         >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          {menuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Nav */}
       {menuOpen && (
-        <div className="md:hidden px-4 pb-4 space-y-2 text-sm text-gray-800 animate-fadeIn">
+        <div
+          ref={menuRef}
+          className="md:hidden px-3 pb-4 space-y-3 text-base text-gray-800 animate-fadeIn w-full bg-white border-t border-gray-100 shadow z-[60]"
+        >
           {[
             ['/', 'Home'],
             ['/menu', 'Menu'],
@@ -83,19 +106,28 @@ const Header = () => {
             ['/reviews', 'Reviews'],
             ['/contact', 'Contact'],
           ].map(([href, label]) => (
-            <Link key={href} href={href} onClick={() => setMenuOpen(false)}>
+            <Link
+              key={href}
+              href={href}
+              className="block py-2 px-2 rounded hover:bg-cafe-cream w-full"
+              onClick={() => setMenuOpen(false)}
+            >
               {label}
             </Link>
           ))}
-          <Link href="/order-online" className="block btn-outline text-xs w-fit" onClick={() => setMenuOpen(false)}>
+          <Link
+            href="/order-online"
+            className="block btn-outline text-xs w-fit mt-2 mx-auto"
+            onClick={() => setMenuOpen(false)}
+          >
             Order Online
           </Link>
-          <div className="flex items-center space-x-3 pt-1">
+          <div className="flex items-center space-x-4 pt-2 justify-center">
             <Link href="https://www.instagram.com/woodburystationcafe/" target="_blank" aria-label="Instagram">
-              <Instagram size={16} className="text-cafe-rose hover:text-cafe-lavender" />
+              <Instagram size={18} className="text-cafe-rose hover:text-cafe-lavender" />
             </Link>
             <Link href="https://www.facebook.com/woodburystation/" target="_blank" aria-label="Facebook">
-              <Facebook size={16} className="text-cafe-rose hover:text-cafe-lavender" />
+              <Facebook size={18} className="text-cafe-rose hover:text-cafe-lavender" />
             </Link>
           </div>
         </div>
