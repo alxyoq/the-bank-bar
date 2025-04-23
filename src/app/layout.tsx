@@ -32,7 +32,7 @@ export default function RootLayout({
         />
         <meta
           property="og:image"
-          content="/images/logo/woodbury-station-cafe-logo.png"
+          content="/images/logo/link-preview.png"
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="1200" />
