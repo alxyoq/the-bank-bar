@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
-import { Instagram, Facebook, Menu, X } from 'lucide-react';
+import { Instagram, Facebook, Menu, X, ShoppingBag } from 'lucide-react';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -70,7 +70,11 @@ const Header = () => {
               {label}
             </Link>
           ))}
-          <Link href="/order-online" className="btn-outline text-xs px-3 py-[5px] ml-2">
+          <Link
+            href="/order-online"
+            className="btn-outline text-xs px-3 py-[5px] ml-2 flex items-center"
+          >
+            <ShoppingBag size={16} className="mr-1" />
             Order Online
           </Link>
           <Link href="https://www.instagram.com/woodburystationcafe/" target="_blank" aria-label="Instagram">
@@ -117,9 +121,10 @@ const Header = () => {
           ))}
           <Link
             href="/order-online"
-            className="block btn-outline text-xs w-fit mt-2 mx-auto"
+            className="block btn-outline text-xs w-fit mt-2 mx-auto flex items-center"
             onClick={() => setMenuOpen(false)}
           >
+            <ShoppingBag size={16} className="mr-1" />
             Order Online
           </Link>
           <div className="flex items-center space-x-4 pt-2 justify-center">

@@ -8,7 +8,9 @@ const FeaturedSections = () => {
       <section className="cafe-container text-center mb-16">
         <div className="inline-block border-2 border-black px-6 py-4">
           <div className="flex flex-col items-center">
-            <h1 className="text-2xl md:text-3xl font-semibold text-[#ab843f]">WOODBURY STATION CAFE</h1>
+            <h1 className="text-2xl md:text-3xl font-semibold text-[#ab843f]">
+              WOODBURY STATION CAFE
+            </h1>
             <p className="mt-1 text-sm md:text-base tracking-wide font-medium text-black">
               Railroad Burgers and Bourbon Street Breakfasts await
             </p>
@@ -19,7 +21,7 @@ const FeaturedSections = () => {
           Breakfast and Brunch Woodbury
         </h2>
         <p className="text-sm md:text-base font-medium text-gray-700 mt-1">
-          Open from Tues–Sunday 8 AM–3 PM
+          Open from Tues–Sunday 8 AM–3 PM
         </p>
 
         <hr className="my-6 border-t border-[#ab843f]" />
@@ -54,7 +56,11 @@ const FeaturedSections = () => {
               Welcome To Woodbury Station Cafe
             </h2>
             <p className="mb-4 text-gray-700">
-              Woodbury Station Cafe opened as a charming European-style cafe and restaurant in the historic Woodbury train station. We serve delicious, perfectly-prepared classic Southern French feel breakfast and brunch in a cozy and historic atmosphere that's perfect for both family meals and casual dining with friends.
+              Woodbury Station Cafe opened as a charming European-style cafe and
+              restaurant in the historic Woodbury train station. We serve
+              delicious, perfectly-prepared classic Southern French feel
+              breakfast and brunch in a cozy and historic atmosphere that’s
+              perfect for both family meals and casual dining with friends.
             </p>
             <p className="mb-4 text-gray-700">
               We look forward to welcoming you in!
@@ -90,14 +96,17 @@ const FeaturedSections = () => {
           </div>
           <div>
             <h2 className="text-2xl font-medium text-[#ab843f] mb-4">
-              Breakfast, Lunch and Brunch starting at 6:30am
+              Breakfast, Lunch and Brunch starting at 6:30 AM
             </h2>
             <p className="mb-4 text-gray-700">
-              In addition to a classic American menu, Woodbury Station Cafe offers a coffee bar, fresh squeezed juices, freshly baked pastries, sandwiches, hearty breakfast classics, and a custom bar for catering and special events.
+              In addition to a classic American menu, Woodbury Station Cafe
+              offers a coffee bar, fresh squeezed juices, freshly baked
+              pastries, sandwiches, hearty breakfast classics, and a custom bar
+              for catering and special events.
             </p>
             <Link
               href="/menu"
-              className="bg-[#ab843f] text-white hover:bg-opacity-90 rounded-full px-5 py-2 text-sm font-medium transition-all inline-block mt-2"
+              className="bg-[#ab843f] text-white hover:bg-opacity-90 rounded-full px-5 py-2 text-sm font-medium transition-all inline-block -mt-2 md:mt-2"
             >
               View Menu
             </Link>
@@ -113,10 +122,14 @@ const FeaturedSections = () => {
               Events & Parties
             </h2>
             <p className="mb-4 text-gray-700">
-              Celebrate special moments with friends and family in our cozy and historic restaurant – a custom menu selection is available for all catering and special events. Please email us or call us to discuss your needs.
+              Celebrate special moments with friends and family in our cozy and
+              historic restaurant – a custom menu selection is available for
+              all catering and special events. Please email us or call us to
+              discuss your needs.
             </p>
             <p className="mb-4 text-gray-700">
-              We look forward to offering attentive service and accommodating your celebration requests.
+              We look forward to offering attentive service and accommodating
+              your celebration requests.
             </p>
             <Link
               href="/catering-events"
@@ -125,7 +138,7 @@ const FeaturedSections = () => {
               Book Your Event
             </Link>
           </div>
-          <div className="order-1 md:order-2">
+          <div className="order-1 md:order-2 mt-4 md:mt-0">
             <div className="rounded-lg overflow-hidden shadow-md">
               <Image
                 src="/images/woodbury/event-1.jpg"
