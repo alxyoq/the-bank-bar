@@ -50,11 +50,11 @@ export default {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
-        // Custom Sweet Cafe colors
+        // Custom Bank Bar colors
         cafe: {
-          lavender: '#bab3bd',
-          rose: '#c48a8f',
-          cream: '#fef3ed',
+          lavender: '#13233d',  // Deep navy - Primary color for backgrounds and main elements
+          rose: '#a18559',     // Warm gold - Accent color for buttons, links, and highlights
+          cream: '#bcb7a9',    // Soft taupe - Secondary background and subtle elements
         },
       },
       borderRadius: {

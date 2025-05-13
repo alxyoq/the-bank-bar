@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import NewsletterSignup from '../ui/NewsletterSignup';
 
 interface LayoutProps {
   children: ReactNode;
@@ -15,7 +14,6 @@ const Layout = ({ children, showNewsletter = true }: LayoutProps) => {
       <main className="flex-grow">
         {children}
       </main>
-      {showNewsletter && <NewsletterSignup />}
       <Footer />
     </div>
   );
