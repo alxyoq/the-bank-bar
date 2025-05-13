@@ -6,10 +6,8 @@ import { Menu as MenuIcon, X, ShoppingBag } from 'lucide-react';
 
 const OFFSET = -80;
 
-/**
- * Scrolls to the requested section every time the link is clicked,
- * even when the current URL already contains that same #hash.
- */
+/* ───────────────── helpers ───────────────── */
+
 function scrollToSection(
   id: string,
   closeMenu: () => void,
@@ -21,23 +19,40 @@ function scrollToSection(
   if (!el) return;
 
   const lenis: any = (window as any).__lenis;
-  const scrollOpts = { offset: OFFSET, lerp: 0.15 };
+  const opts = { offset: OFFSET, lerp: 0.15 };
 
-  if (lenis?.scrollTo) {
-    lenis.scrollTo(el, scrollOpts);
-  } else {
-    const y = el.getBoundingClientRect().top + window.scrollY + OFFSET;
-    window.scrollTo({ top: y, behavior: 'smooth' });
-  }
+  lenis?.scrollTo
+    ? lenis.scrollTo(el, opts)
+    : window.scrollTo({
+        top: el.getBoundingClientRect().top + window.scrollY + OFFSET,
+        behavior: 'smooth',
+      });
 
-  /* ── force the hash to update so the handler always re-fires ── */
-  if (location.hash === `#${id}`) {
-    history.replaceState(null, '', location.pathname + location.search); // clear hash
-  }
-  history.pushState(null, '', `#${id}`); // set (or reset) hash
+  if (location.hash === `#${id}`)
+    history.replaceState(null, '', location.pathname + location.search);
+  history.pushState(null, '', `#${id}`);
 
   closeMenu();
 }
+
+function scrollToHome(
+  closeMenu: () => void,
+  e: React.MouseEvent<HTMLAnchorElement>
+) {
+  e.preventDefault();
+
+  const lenis: any = (window as any).__lenis;
+  lenis?.scrollTo
+    ? lenis.scrollTo(0, { lerp: 0.15 })
+    : window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  if (location.hash)
+    history.replaceState(null, '', location.pathname + location.search);
+
+  closeMenu();
+}
+
+/* ───────────────── component ───────────────── */
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -72,7 +87,8 @@ const Header = () => {
   }, [menuOpen]);
 
   return (
-    <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 max-w-3xl w-[80vw] pointer-events-none">
+    /* ↑ z-index bumped so header always sits above page content */
+    <header className="fixed top-4 left-1/2 -translate-x-1/2 z-[120] max-w-3xl w-[80vw] pointer-events-none">
       <div
         className="pointer-events-auto w-full flex justify-center items-center h-12 border border-cafe-cream rounded-xl px-2 sm:px-4 backdrop-blur-md relative transition-all duration-500 space-x-6"
         style={{
@@ -81,18 +97,27 @@ const Header = () => {
             : '0 12px 32px -8px rgba(161,133,89,0.3)',
         }}
       >
-        <img
-          src="/logo.png"
-          alt="Logo"
-          className="hidden md:block absolute left-2 h-10 w-auto object-contain"
-        />
-
-        <Link
+        {/* ── clickable logo ── */}
+        <a
           href="/"
+          onClick={(e) => scrollToHome(() => {}, e)}
+          className="hidden md:block absolute left-2 h-10 w-auto"
+        >
+          <img
+            src="/logo.png"
+            alt="Logo"
+            className="h-full w-auto object-contain"
+          />
+        </a>
+
+        {/* ── brand name link ── */}
+        <a
+          href="/"
+          onClick={(e) => scrollToHome(() => {}, e)}
           className="text-cafe-rose font-semibold text-sm sm:text-base whitespace-nowrap"
         >
           THE BANK BAR
-        </Link>
+        </a>
 
         {/* ── desktop nav ── */}
         <nav className="hidden md:flex items-center space-x-4 text-sm text-cafe-cream ml-6">
@@ -134,7 +159,7 @@ const Header = () => {
       {menuOpen && (
         <div
           ref={menuRef}
-          className="fixed top-20 left-1/2 -translate-x-1/2 w-[80vw] max-w-3xl bg-cafe-lavender/95 border border-cafe-cream rounded-xl shadow-lg px-4 py-6 space-y-3 text-base text-cafe-cream animate-fadeIn z-[60] pointer-events-auto"
+          className="fixed top-20 left-1/2 -translate-x-1/2 w-[80vw] max-w-3xl bg-cafe-lavender/95 border border-cafe-cream rounded-xl shadow-lg px-4 py-6 space-y-3 text-base text-cafe-cream animate-fadeIn z-[130] pointer-events-auto"
         >
           <a
             href="#menu"
