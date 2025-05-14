@@ -86,7 +86,7 @@ export default function HomePage() {
             ref={bubbleRef}
             className="
               sticky
-              top-[200px]          /* 48 px (top-12) + 10 px */
+              top-[250px]          /* 48 px (top-12) + 10 px */
               sm:top-[138px]      /* 128 px (top-32) + 10 px */
               z-30                /* keeps bubble above overlay */
               w-[90%] sm:w-[640px] h-[600px] max-h-[45vh]
