@@ -7,8 +7,24 @@ export const metadata: Metadata = {
   description:
     'Drinks, upscale bar eats, and regular live entertainment in a former bank building with a pool table.',
   icons: {
-    icon: '/favicon.png',        // default injection
-    shortcut: '/favicon.png',    // “shortcut icon” fallback
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+  },
+  openGraph: {
+    title: 'The Bank Bar',
+    description:
+      'Drinks, upscale bar eats, and regular live entertainment in a former bank building with a pool table.',
+    url: 'https://thebankbarnj.com',
+    images: ['/logo1.png'],
+    siteName: 'The Bank Bar',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Bank Bar',
+    description:
+      'Drinks, upscale bar eats, and regular live entertainment in a former bank building with a pool table.',
+    images: ['/logo1.png'],
   },
 }
 
