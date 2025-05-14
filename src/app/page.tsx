@@ -13,8 +13,6 @@ export default function HomePage() {
 
   useEffect(() => {
     const lenis = new Lenis({ smooth: true, lerp: 0.075, wheelMultiplier: 0.7 });
-
-    /* ★ make the Lenis instance globally accessible ★ */
     (window as any).__lenis = lenis;
     lenisRef.current = lenis;
 
@@ -27,7 +25,6 @@ export default function HomePage() {
     return () => lenis.destroy();
   }, []);
 
-  /* --- everything below is unchanged --- */
   const sectionRef = useRef<HTMLElement | null>(null);
   const bubbleRef = useRef<HTMLDivElement | null>(null);
 
@@ -87,17 +84,12 @@ export default function HomePage() {
         <div className="relative h-full pb-24">
           <div
             ref={bubbleRef}
-            className="sticky top-32 left-1/2 -translate-x-1/2 z-30 will-change-transform
-                       rounded-[3rem] overflow-hidden shadow-xl pointer-events-none"
-            style={{
-              width: 640,
-              height: 600,
-              maxWidth: '100vw',
-              maxHeight: '45vw',
-              transform: 'translate(-50%,0) scale(0.6)',
-              padding: '48px',
-              boxSizing: 'border-box',
-            }}
+            className="
+              sticky top-32 left-1/2 -translate-x-1/2 z-30 will-change-transform
+              rounded-[3rem] overflow-hidden shadow-xl pointer-events-none
+              w-[90vw] sm:w-[640px] h-[600px] max-h-[45vw]
+              p-12 box-border
+            "
           >
             <Image
               src="/gradient-bg.png"

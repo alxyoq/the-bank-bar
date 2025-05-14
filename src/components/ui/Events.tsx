@@ -50,7 +50,8 @@ export default function Events() {
         <h2 className="text-4xl font-quicksand font-semibold text-center text-[#a18559] mb-12">
           Events at The Bank Bar
         </h2>
-        <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+        {/* default: 2 columns on mobile; then 2–3–4 as screen grows */}
+        <div className="columns-2 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
           {shuffledImages.map((event) => (
             <div
               key={event.id}
@@ -68,7 +69,7 @@ export default function Events() {
                     alt={`Event ${event.id}`}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   />
                 </div>
               </div>
