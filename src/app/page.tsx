@@ -10,23 +10,20 @@ import Lenis from '@studio-freight/lenis';
 
 export default function HomePage() {
   const lenisRef = useRef<Lenis | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const bubbleRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const lenis = new Lenis({ smooth: true, lerp: 0.075, wheelMultiplier: 0.7 });
-    (window as any).__lenis = lenis;
+    ;(window as any).__lenis = lenis;
     lenisRef.current = lenis;
-
     const raf = (t: number) => {
       lenis.raf(t);
       requestAnimationFrame(raf);
     };
     requestAnimationFrame(raf);
-
     return () => lenis.destroy();
   }, []);
-
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const bubbleRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const MIN_SCALE = 0.6;
@@ -64,7 +61,6 @@ export default function HomePage() {
       onScroll();
     });
     onScroll();
-
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', measure);
@@ -81,13 +77,16 @@ export default function HomePage() {
         className="relative w-full h-[400vh] pt-24 bg-cover bg-center"
         style={{ backgroundImage: "url('/city-fog.jpg')" }}
       >
-        <div className="relative h-full pb-24">
+        {/* add mobile padding to match the rest of your site */}
+        <div className="relative h-full pb-24 px-8 sm:px-0">
           <div
             ref={bubbleRef}
             className="
-              sticky top-32 left-1/2 -translate-x-1/2 z-30 will-change-transform
+              sticky left-1/2 -translate-x-1/2
+              top-1/2 -translate-y-1/2 sm:top-32 sm:translate-y-0
+              z-30 will-change-transform
               rounded-[3rem] overflow-hidden shadow-xl pointer-events-none
-              w-[90vw] sm:w-[640px] h-[600px] max-h-[45vw]
+              w-full sm:w-[640px] h-[600px] max-h-[45vw]
               p-12 box-border
             "
           >
@@ -117,7 +116,6 @@ export default function HomePage() {
       <section id="menu">
         <Menu />
       </section>
-
       <section id="events">
         <Events />
       </section>
