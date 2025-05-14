@@ -1,29 +1,35 @@
-/*  src/app/layout.tsx  */
-import type { Metadata } from 'next';
-import './globals.css';
+/* src/app/layout.tsx */
+import type { Metadata } from 'next'
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'The Bank Bar | Woodbury, NJ',
+  title: 'The Bank Bar | Gloucester City, NJ',
   description:
-    'A charming train-themed cafe serving delicious breakfast and lunch in Woodbury, New Jersey.',
-};
+    'Drinks, upscale bar eats, and regular live entertainment in a former bank building with a pool table.',
+  icons: {
+    icon: '/favicon.png',        // default injection
+    shortcut: '/favicon.png',    // “shortcut icon” fallback
+  },
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="image_src" href="/images/logo/woodbury-station-cafe-logo.png" />
-        <title>The Bank Bar | Woodbury, NJ</title>
+        {/* fallback for very old browsers */}
+        <link rel="shortcut icon" href="/favicon.png" />
       </head>
-
-      <body className="antialiased bg-black text-white font-poppins" suppressHydrationWarning>
+      <body
+        className="antialiased bg-black text-white font-poppins"
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>
-  );
+  )
 }
