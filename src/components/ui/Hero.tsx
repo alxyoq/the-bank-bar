@@ -5,7 +5,7 @@ const Hero = () => (
     className="
       relative
       w-full
-      h-[calc(90vh-0px)]
+      h-[calc(100vh-0px)]
       overflow-visible overflow-hidden
       sm:h-[calc(100vh-5px)]
       flex items-end justify-center
