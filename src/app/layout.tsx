@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
+  // Ensures all relative URLs use the live domain
+  metadataBase: new URL('https://thebankbarnj.com'),
   title: 'The Bank Bar | Gloucester City, NJ',
   description:
     'Drinks, upscale bar eats, and regular live entertainment in a former bank building with a pool table.',
@@ -14,8 +16,8 @@ export const metadata: Metadata = {
     title: 'The Bank Bar',
     description:
       'Drinks, upscale bar eats, and regular live entertainment in a former bank building with a pool table.',
-    url: 'https://thebankbarnj.com',
-    images: ['/logo1.png'],
+    url: '/',                  // will resolve to https://thebankbarnj.com/
+    images: ['/logo1.png'],    // will resolve to https://thebankbarnj.com/logo1.png
     siteName: 'The Bank Bar',
     type: 'website',
   },
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
     title: 'The Bank Bar',
     description:
       'Drinks, upscale bar eats, and regular live entertainment in a former bank building with a pool table.',
-    images: ['/logo1.png'],
+    images: ['/logo1.png'],    // will resolve to https://thebankbarnj.com/logo1.png
   },
 }
 
